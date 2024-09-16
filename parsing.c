@@ -6,7 +6,7 @@
 /*   By: sidiallo <sidiallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 10:07:27 by sidiallo          #+#    #+#             */
-/*   Updated: 2024/09/12 08:41:58 by sidiallo         ###   ########.fr       */
+/*   Updated: 2024/09/16 20:28:23 by sidiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int	check_digit(char **av)
 	}
 	return (0);
 }
-int init_table(int ac, char **av, t_table *table)
+int parse_table(int ac, char **av, t_table *table)
 {
     
     memset(table,0,sizeof(*table));
@@ -117,9 +117,9 @@ int  parsing(int ac,char **av,t_table *table)
         printf("invalid argument\n");
         return(-1);
     }
-    if(init_table(ac,av,table) != 0)
+    if(parse_table(ac,av,table) != 0)
     {
-        printf("error malloc\n");
+        printf("error argument\n");
     }
     return(0);
 }

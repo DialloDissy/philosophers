@@ -3,6 +3,8 @@ NAME = philosophers
 SRC	=  main.c \
 	parsing.c \
 	initialize.c \
+	utils_philo.c \
+	exit.c \
 
 CC = cc
 CFLAGS = -pthread -g -Wall -Werror -Wextra 
