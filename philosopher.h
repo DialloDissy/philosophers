@@ -6,7 +6,7 @@
 /*   By: sidiallo <sidiallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 15:35:36 by sidiallo          #+#    #+#             */
-/*   Updated: 2024/09/16 21:43:29 by sidiallo         ###   ########.fr       */
+/*   Updated: 2024/09/22 23:43:29 by sidiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,26 @@
 # include <string.h>
 
 
+
+# define RST    "\033[0m"      /* Reset to default color */
+# define RED	"\033[1;31m"   /* Bold Red */
+# define G      "\033[1;32m"   /* Bold Green */
+# define Y      "\033[1;33m"   /* Bold Yellow */
+# define B      "\033[1;34m"   /* Bold Blue */
+# define M      "\033[1;35m"   /* Bold Magenta */
+# define C      "\033[1;36m"   /* Bold Cyan */
+# define W      "\033[1;37m"   /* Bold White */
+
+
+
+
 typedef enum s_msg
 {
 	EAT,
 	SLEEP,
 	THINK,
 	DIED,
+	FORK,
 }	t_msg;
 
 
@@ -33,6 +47,8 @@ typedef struct s_data_time
 {
 	int start;
 	int remaining;
+	int now;
+	int sleep_time;
 } t_data_time;
 
 
@@ -55,21 +71,23 @@ typedef struct s_philo
 typedef struct s_table
 {
 	t_philo			*philo;
+	pthread_t		monitor;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print_mtx;
 	pthread_mutex_t	meal_mtx;
 	pthread_mutex_t	count_meal_mtx;
 	pthread_mutex_t	dead_mtx;
 	pthread_mutex_t	last_meal_mtx;
-	int				*is_dead;
+	int				is_dead;
 	int				*is_finish;
 	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				time_to_think;
-	int				nb_meal_max;
+	int				nb_meal;
 	int				nb_philo;
 	int				time_start;
+	int				count_meal;
 }					t_table;
 
 
@@ -86,5 +104,6 @@ size_t				get_the_time(void);
 int					dinner(t_table *table);
 void				wait_all_thread(size_t time);
 void				exit_philo(t_table *table);
+void				*monitor(void *arg);
 
 #endif

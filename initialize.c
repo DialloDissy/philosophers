@@ -6,7 +6,7 @@
 /*   By: sidiallo <sidiallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 08:34:17 by sidiallo          #+#    #+#             */
-/*   Updated: 2024/09/16 23:47:13 by sidiallo         ###   ########.fr       */
+/*   Updated: 2024/09/17 19:49:30 by sidiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static int init_fork(t_table *table)
             free(table->philo);
             return(-1); 
         }
-    while(i > table->nb_philo)
+    while(i < table->nb_philo)
     {
         if(pthread_mutex_init(&table->forks[i],NULL) != 0)
         {

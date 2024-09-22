@@ -6,7 +6,7 @@
 /*   By: sidiallo <sidiallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/14 17:19:38 by sidiallo          #+#    #+#             */
-/*   Updated: 2024/09/16 21:21:56 by sidiallo         ###   ########.fr       */
+/*   Updated: 2024/09/22 18:12:33 by sidiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,30 @@ size_t	get_the_time(void)
 
 
 
-// int ft_usleep()
+void ft_usleep(size_t time, t_table *table)
+{
+	t_data_time data;
+
+	data.start = get_the_time();
+	data.remaining = time;
+	while(data.remaining > 0)
+	{
+		if(dinner_finish(table))
+				break;
+		data.now = get_the_time();
+		if(data.start + time > data.now)
+			data.remaining = data.start + time - data.now;
+		else
+			data.remaining= 0;
+		if(data.remaining > 500)
+			data.sleep_time = 500;
+		else
+			data.sleep_time = data.remaining;
+		usleep(data.sleep_time);
+		data.now = get_the_time();
+		if(data.start + time > data.now)
+			data.remaining = data.start +time - data.now;
+		else
+			data.remaining = 0;
+	}		
+}
