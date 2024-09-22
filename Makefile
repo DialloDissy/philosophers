@@ -6,6 +6,7 @@ SRC	=  main.c \
 	utils_philo.c \
 	exit.c \
 	monitor.c \
+	routine.c \
 
 CC = cc
 CFLAGS = -pthread -g -Wall -Werror -Wextra 
