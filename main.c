@@ -6,7 +6,7 @@
 /*   By: sidiallo <sidiallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 15:35:13 by sidiallo          #+#    #+#             */
-/*   Updated: 2024/09/22 23:42:42 by sidiallo         ###   ########.fr       */
+/*   Updated: 2024/09/23 00:07:10 by sidiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,14 @@ int philo_routine(void *arg)
 	pthread_mutex_unlock(&philo->table->last_meal_mtx);
 	wait_all_thread(philo->table->time_start);
 	if(philo->id % 2)
+		ft_usleep(philo->table->time_to_eat,philo->table);
+	while(!dinner_finish(philo->table))
 	{
-		ft_usleep(philo->table->time_to_eat,philo->table); 
-	}
-	
+		eating(philo);
+		sleeping(philo);
+		thinking(philo);
+	} 
+	return(NULL);
 }
 
 
@@ -94,13 +98,16 @@ int dinner(t_table *table)
 		i++;
     }
 	if(pthread_create(&table->monitor,NULL,&monitor,&table->philo[i]));
-	// 	returb(-1); //handling this case
+	 	returb(-1); //handling this case
+	i = 0;
 	while(i < table->nb_philo)
 	{
 		if(pthread_join(table->philo[i].thread_id,NULL));
 			return(-1);
-		
 	}
+	number_meal(table);
+	if(pthread_join(table->monitor,NULL));
+			return(-1);
 	return(0);
 }
 

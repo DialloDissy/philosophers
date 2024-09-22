@@ -6,7 +6,7 @@
 /*   By: sidiallo <sidiallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 15:35:36 by sidiallo          #+#    #+#             */
-/*   Updated: 2024/09/22 23:43:29 by sidiallo         ###   ########.fr       */
+/*   Updated: 2024/09/23 00:05:27 by sidiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,5 +105,6 @@ int					dinner(t_table *table);
 void				wait_all_thread(size_t time);
 void				exit_philo(t_table *table);
 void				*monitor(void *arg);
+int dinner_finish(t_table *table);
 
 #endif
