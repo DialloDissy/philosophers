@@ -6,7 +6,7 @@
 /*   By: sidiallo <sidiallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 15:35:36 by sidiallo          #+#    #+#             */
-/*   Updated: 2024/09/23 00:05:27 by sidiallo         ###   ########.fr       */
+/*   Updated: 2024/09/24 23:32:30 by sidiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ typedef enum s_msg
 
 typedef struct s_data_time
 {
-	int start;
-	int remaining;
-	int now;
-	int sleep_time;
+	size_t start;
+	size_t remaining;
+	size_t now;
+	size_t sleep_time;
 } t_data_time;
 
 
@@ -87,7 +87,6 @@ typedef struct s_table
 	int				nb_meal;
 	int				nb_philo;
 	int				time_start;
-	int				count_meal;
 }					t_table;
 
 
@@ -105,6 +104,14 @@ int					dinner(t_table *table);
 void				wait_all_thread(size_t time);
 void				exit_philo(t_table *table);
 void				*monitor(void *arg);
-int dinner_finish(t_table *table);
+int					dinner_finish(t_table *table);
+void				print_msg(t_philo *philo, int msg);
+void				eating(t_philo *philo);
+void				sleeping(t_philo *philo);
+void				thinking(t_philo *philo);
+void				ft_usleep(size_t time, t_table *table);
+void				set_death(t_table *table);
+int					check_death(t_philo *philo);
+int					handle_end(t_table *table);
 
 #endif

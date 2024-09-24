@@ -6,7 +6,7 @@
 /*   By: sidiallo <sidiallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 08:34:17 by sidiallo          #+#    #+#             */
-/*   Updated: 2024/09/17 19:49:30 by sidiallo         ###   ########.fr       */
+/*   Updated: 2024/09/24 23:52:24 by sidiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int init_fork(t_table *table)
 {
     int i;
 
-    i = 1;
+    i = 0;
     table->forks = malloc(sizeof(pthread_mutex_t) *(table->nb_philo));
         if(!table->forks)
         {
@@ -71,17 +71,17 @@ static int init_fork(t_table *table)
 static int  init_philo(t_table *table)
 {
     int i;
-    i= 1;
+    i= 0;
     
     table->philo  = malloc(sizeof(t_philo)*(table->nb_philo));
     if(!table->philo)
         return(-1);
     memset(table->philo,0,sizeof(t_philo)*(table->nb_philo));
-    while(i <= table->nb_philo)
+    while(i < table->nb_philo)
     {
-        printf("%p philo numero : %d\n", (void *)&table->philo[i],i);
-        table->philo[i].id = i;
+        table->philo[i].id = i + 1;
         table->philo[i].table = table;
+        table->philo[i].count_meal = 0;
         i++; 
     }
     return(0);

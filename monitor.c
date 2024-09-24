@@ -6,7 +6,7 @@
 /*   By: sidiallo <sidiallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 18:55:36 by sidiallo          #+#    #+#             */
-/*   Updated: 2024/09/22 23:35:11 by sidiallo         ###   ########.fr       */
+/*   Updated: 2024/09/24 23:38:22 by sidiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ int dinner_finish(t_table *table)
     pthread_mutex_lock(&table->dead_mtx);
     if(table->is_dead)
         ret = 1 ;
-    pthread_mutex_lock(&table->dead_mtx);
+    pthread_mutex_unlock(&table->dead_mtx);
     return (ret);
 }
 void    set_death(t_table   *table)
 {
     pthread_mutex_lock(&table->dead_mtx);
     table->is_dead = 1 ;
-    pthread_mutex_unlock(&table->meal_mtx);
+    pthread_mutex_unlock(&table->dead_mtx);
 }
 
 int check_death(t_philo *philo)
@@ -35,7 +35,7 @@ int check_death(t_philo *philo)
     int time;
 
     pthread_mutex_lock(&philo->table->last_meal_mtx);
-    time = get_time() - philo->last_meal;
+    time = get_the_time() - philo->last_meal;
     pthread_mutex_unlock(&philo->table->last_meal_mtx);
     if(time >= philo->table->time_to_die)
     {
@@ -61,8 +61,9 @@ int handle_end(t_table *table)
         if(table->nb_meal)
         {
             pthread_mutex_lock(&table->count_meal_mtx);
-            if(table->philo[i].count_meal = table->nb_meal)
+            if(table->philo[i].count_meal < table->nb_meal)
                 ret = 0;
+            // printf("philo count_meal numero %d\n",table->philo[i].count_meal);
             pthread_mutex_unlock(&table->count_meal_mtx);
         }
         i++;

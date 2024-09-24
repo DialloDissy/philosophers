@@ -6,7 +6,7 @@
 /*   By: sidiallo <sidiallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/10 10:07:27 by sidiallo          #+#    #+#             */
-/*   Updated: 2024/09/16 20:28:23 by sidiallo         ###   ########.fr       */
+/*   Updated: 2024/09/23 20:45:32 by sidiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int parse_table(int ac, char **av, t_table *table)
     table->time_to_eat = atol(av[3]);
     table->time_to_sleep = atol(av[4]);
     if(ac == 6)
-        table->nb_meal_max = atol(av[5]);
+        table->nb_meal = atol(av[5]);
     return(0);
 }
 
