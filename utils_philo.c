@@ -19,7 +19,7 @@ void wait_all_thread(size_t time)
 		continue;
 }
 
-size_t	get_the_time(void)
+ size_t	get_the_time(void)
 {
 	struct timeval time;
 

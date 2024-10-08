@@ -92,10 +92,10 @@ int init_table(t_table *table)
 {
     
     if(init_philo(table) != 0 )
-        return(printf("error init philo\n"),-1);
+        return(1);
     if(init_fork(table) != 0)
-        return(printf("error init fork\n"),-1);
+        return( free(table->philo),1);
     if(init_mutex(table) != 0)
-        return(printf("error init mutex\n"),-1);
+        return(free(table->philo),free(table->forks),1);
     return(0);
 }

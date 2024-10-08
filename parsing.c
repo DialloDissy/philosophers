@@ -115,11 +115,12 @@ int  parsing(int ac,char **av,t_table *table)
     if(check_digit(av) != 0 || check_limit(av) != 0)
     {
         printf("invalid argument\n");
-        return(-1);
+        return(1);
     }
     if(parse_table(ac,av,table) != 0)
     {
         printf("error argument\n");
+		return(1);
     }
     return(0);
 }

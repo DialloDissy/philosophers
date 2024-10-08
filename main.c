@@ -129,10 +129,12 @@ int	main(int ac, char **av)
 	if (ac != 5 && ac != 6)
 	{
 		printf(" The number of characters is wrong \n");
-		return (5); // exit clearly
+		return (free(table), -1); // exit clearly
 	}
-	if (parsing(ac, av, table) != 0 || init_table(table) != 0)
-		return (exit_philo(table),1); // exit clearly
+	if (parsing(ac, av, table) != 0)
+		return(free(table),1);
+	if( init_table(table) != 0)
+		return (printf("erro init table\n)",free(table),1));
     if(dinner(table) != 0) // exit correctly
 		return (exit_philo(table),1);
 	exit_philo(table);
