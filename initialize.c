@@ -6,7 +6,7 @@
 /*   By: sidiallo <sidiallo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 08:34:17 by sidiallo          #+#    #+#             */
-/*   Updated: 2024/10/08 12:57:55 by sidiallo         ###   ########.fr       */
+/*   Updated: 2024/10/08 13:13:47 by sidiallo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int	init_table(t_table *table)
 	if (init_philo(table) != 0)
 		return (1);
 	if (init_fork(table) != 0)
-		return (free(table->philo), 1);
+		return (1);
 	if (init_mutex(table) != 0)
 		return (free(table->philo), free(table->forks), 1);
 	return (0);
